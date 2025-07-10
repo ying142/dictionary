@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小學生國語辭典選購指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', '微軟正黑體', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '📚';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 100px;
+            opacity: 0.1;
+        }
+
+        .header::after {
+            content: '✏️';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 80px;
+            opacity: 0.1;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #4a4a4a;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .nav-tab {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #4a4a4a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section h2 {
+            font-size: 2.2em;
+            color: #4a4a4a;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff9a9e, #fecfef);
+            border-radius: 2px;
+        }
+
+        .content-section h3 {
+            font-size: 1.8em;
+            color: #5a5a5a;
+            margin: 25px 0 15px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .content-section h3::before {
+            content: '🎯';
+            position: absolute;
+            left: -5px;
+            top: 0;
+        }
+
+        .content-section p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: justify;
+            color: #555;
+        }
+
+        .definition-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #2196f3;
+        }
+
+        .definition-box h4 {
+            font-size: 1.4em;
+            color: #1976d2;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .definition-box h4::before {
+            content: '📖';
+            margin-right: 10px;
+        }
+
+        .grade-card {
+            background: linear-gradient(135deg, #fff5f5 0%, #f0f8ff 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid #ffd6cc;
+            transition: transform 0.3s ease;
+        }
+
+        .grade-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .grade-card h4 {
+            font-size: 1.5em;
+            color: #d32f2f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .grade-card h4::before {
+            content: '🌟';
+            margin-right: 10px;
+        }
+
+        .dictionary-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 5px solid #28a745;
+            transition: all 0.3s ease;
+        }
+
+        .dictionary-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .dictionary-card h5 {
+            font-size: 1.4em;
+            color: #28a745;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dictionary-card h5::before {
+            content: '📝';
+            margin-right: 10px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .emoji-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .emoji-list li {
+            font-size: 1.2em;
+            margin: 10px 0;
+            padding: 10px;
+            background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e8 100%);
+            border-radius: 10px;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .emoji-list li::before {
+            content: '✨';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2em;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .footer h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-tab {
+                width: 90%;
+                text-align: center;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .content-section h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>小學生國語辭典選購指南</h1>
+            <p>為家長和教育工作者提供全面的選購指南，幫助孩子找到最適合的學習工具</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('basics')">基本概念 📚</button>
+            <button class="nav-tab" onclick="showSection('advantages')">實體字典優勢 💪</button>
+            <button class="nav-tab" onclick="showSection('selection')">選購要點 🎯</button>
+            <button class="nav-tab" onclick="showSection('methods')">查字典方法 🔍</button>
+            <button class="nav-tab" onclick="showSection('recommendations')">推薦辭典 ⭐</button>
+            <button class="nav-tab" onclick="showSection('conclusion')">結語建議 💡</button>
+        </div>
+
+        <div id="basics" class="content-section active">
+            <h2>字典、詞典、辭典的差異</h2>
+            
+            <div class="definition-box">
+                <h4>字典</h4>
+                <p>主要用於查詢單一漢字的「形音義」（字形、字音、字義），單字本身就具有意義。教育部異體字字典即屬於此類，用於追溯漢字字形字義的演變，作為「正字溯源的參考」。</p>
+            </div>
+
+            <div class="definition-box">
+                <h4>詞典</h4>
+                <p>偏重於詞彙的「詞性、應用、含義」，例如相似詞詞典。</p>
+            </div>
+
+            <div class="definition-box">
+                <h4>辭典</h4>
+                <p>涵蓋範圍更廣，除了基本解釋，還可能加入「典故、圖象甚至一大段解說」，如成語辭典。專業知識或技術用語的工具書也歸類為辭典，如醫學辭典。</p>
+            </div>
+
+            <p style="text-align: center; font-size: 1.4em; color: #d32f2f; margin-top: 30px;">
+                💡 對於小學生而言，因為學校常要求查找字詞，<span class="highlight">「辭典」會比單純的「字典」來得更實用</span>。
+            </p>
+        </div>
+
+        <div id="advantages" class="content-section">
+            <h2>實體字典的優勢與重要性</h2>
+            
+            <p style="text-align: center; font-size: 1.3em; margin-bottom: 30px;">
+                儘管網路字典和App日益普及，實體字典對小學生的學習仍具有不可取代的價值
+            </p>
+
+            <ul class="emoji-list">
+                <li><strong>提升學習效果：</strong> 美利堅大學語言學教授研究指出，「閱讀紙本的學習效果勝過利用手機、平板、網頁等多媒體學習方式」。</li>
+                <li><strong>加深記憶連結：</strong> 紙本書籍的「厚度、頁碼、排版內容都有助於腦中連結，能讓記憶有更多脈絡、更佳立體化」。</li>
+                <li><strong>培養自學能力：</strong> 字典是「開啟知識的鑰匙」，讓孩子可以自由取用語文知識。</li>
+                <li><strong>增加識字量：</strong> 翻找實體字典的過程「能增加更多同部首國字的識字量」。</li>
+                <li><strong>建立成功經驗：</strong> 家長「陪孩子一起查字典，每查到一個字就是一次次成功經驗」。</li>
+            </ul>
+        </div>
+
+        <div id="selection" class="content-section">
+            <h2>小學生國語辭典選購要點</h2>
+
+            <div class="grade-card">
+                <h4>幼稚園～低年級（識字啟蒙階段）</h4>
+                <ul class="emoji-list">
+                    <li><strong>引起興趣為重：</strong> 辭典封面設計若有孩子喜歡的卡通人物或全彩編排，「能增加孩子的學習興趣」。</li>
+                    <li><strong>字體大、有注音及彩色示意圖片：</strong> 大字體有助於看清字體結構，豐富的圖片能「增加閱讀的樂趣與記憶點」。</li>
+                    <li><strong>正確書寫筆畫：</strong> 「記住正確筆劃的好處在於能加強孩子的結構概念」。</li>
+                    <li><strong>詞彙量適中：</strong> 「建議落在5000字至7000字之間是一個較合適的範圍」。</li>
+                    <li><strong>紙張明亮不反光：</strong> 提供更好的閱讀體驗。</li>
+                </ul>
+            </div>
+
+            <div class="grade-card">
+                <h4>中、高年級學童</h4>
+                <ul class="emoji-list">
+                    <li><strong>豐富詞彙量與最新修訂版本：</strong> 以提升字彙量為主要目標。</li>
+                    <li><strong>附上例詞、例句：</strong> 這是「幫助孩子理解新資訊，並學會應用的重要範例」。</li>
+                    <li><strong>囊括成語詞庫：</strong> 中高年級會開始接觸成語和名言佳句。</li>
+                    <li><strong>最新修訂版本：</strong> 教育部經常修改字詞讀音，「購入時務必確認辭典的出版時間」。</li>
+                    <li><strong>詞彙量更大：</strong> 可選擇收錄字數「落在6,000～10,000字的辭典」。</li>
+                    <li><strong>趣味內容：</strong> 附加「小百科」、「小故事」等內容，「激發孩子的學習興趣」。</li>
+                </ul>
+            </div>
+
+            <div class="grade-card">
+                <h4>實際翻閱體驗</h4>
+                <p style="font-size: 1.3em; text-align: center; color: #d32f2f;">
+                    家長應「最好先去書店實際翻過一遍」，讓孩子帶著功課上的國字真的去書店查查看，
+                    <span class="highlight">好查又自己喜歡的工具書，對孩子學習國字來說是很棒的開始</span>。
+                </p>
+            </div>
+        </div>
+
+        <div id="methods" class="content-section">
+            <h2>查字典的方式</h2>
+            
+            <p style="text-align: center; font-size: 1.3em; margin-bottom: 30px;">
+                學童查字典的方式通常依學習階段循序漸進
+            </p>
+
+            <div class="dictionary-card">
+                <h5>字音查字法</h5>
+                <p>通常是孩子學習的「第一步」，適合剛開始學習注音符號的低年級學童。</p>
+            </div>
+
+            <div class="dictionary-card">
+                <h5>部首查字法</h5>
+                <p>國小二年級下學期開始導入部首和部件，進入「字群識字」階段。</p>
+            </div>
+
+            <div class="dictionary-card">
+                <h5>總筆畫查字法</h5>
+                <p>配合部首查字法使用，幫助孩子更精確地找到目標字詞。</p>
+            </div>
+
+            <p style="text-align: center; font-size: 1.2em; margin-top: 30px; color: #666;">
+                家長應陪同孩子練習，從字音查字法開始，再擴展到部首查字法，
+                並在查閱過程中，與孩子討論詞彙的應用時機。
+            </p>
+        </div>
+
+        <div id="recommendations" class="content-section">
+            <h2>推薦辭典類型與個別優勢</h2>
+
+            <h3>綜合型辭典</h3>
+
+            <div class="dictionary-card" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; position: relative;">
+                <div style="position: absolute; top: 10px; right: 15px; background: #ff9800; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.9em; font-weight: bold;">🏆 第一推薦</div>
+                <h5 style="color: #e65100;">小康軒 新實用國語詞典 (約6000字)</h5>
+                <p><strong>特點：</strong> 「可培養文句應用能力的實用辭典」。符合教育部標準。每個生字置於十字格中，搭配精確筆順。附符合時代的詞條及優美流暢造句示範。</p>
+                <p><strong>適用對象：</strong> 國小</p>
+                <p><strong>大沈老師推薦：</strong> 「有清楚的筆順很適合初學國字的孩子」。</p>
+            </div>
+
+            <div class="dictionary-card">
+                <h5>世一文化 中小學生必備國語辭典 (約7000字)</h5>
+                <p><strong>特點：</strong> 「造句示範與詞性解釋，全面又易於理解」。每個讀音依詞性分項解釋，大部分字詞列有造句示範。</p>
+                <p><strong>適用對象：</strong> 國小、國中</p>
+            </div>
+
+            <div class="dictionary-card">
+                <h5>五南圖書 小學生國語辭典 (4版) (約5300字)</h5>
+                <p><strong>特點：</strong> 「豐富實用資訊，運用更靈活」。2023年修訂版本，依教育部標準編訂。</p>
+                <p><strong>適用對象：</strong> 國小</p>
+            </div>
+
+            <div class="dictionary-card">
+                <h5>南一書局 新超群國語辭典 (約6200字)</h5>
+                <p><strong>特點：</strong> 「收錄各版教科書常用字詞的實用工具書」。大沈老師推薦，「國字是最大的」。</p>
+                <p><strong>適用對象：</strong> 國小、國中</p>
+            </div>
+
+            <div class="dictionary-card">
+                <h5>三民書局 三民國語小辭典 (5000多字)</h5>
+                <p><strong>特點：</strong> 「大小適中，即使外出也方便攜帶」。瑞貝卡一家推薦：「字體大、有插圖、詞彙多」。</p>
+                <p><strong>適用對象：</strong> 國小</p>
+            </div>
+
+            <div class="dictionary-card">
+                <h5>國語日報 國語日報學生字典 (8000多字)</h5>
+                <p><strong>特點：</strong> 「精選多種學習資源，開拓知識視野」。收錄大量基礎單字、語詞、成語。</p>
+                <p><strong>適用對象：</strong> 國小、國中</p>
+            </div>
+
+            <div class="dictionary-card">
+                <h5>台灣東方 標準國字小學生辭典（革新版）(5000多字)</h5>
+                <p><strong>特點：</strong> 「輕巧小體積，方便攜帶查閱」。瑞貝卡一家推薦：恩寶喜好度排名第一。</p>
+                <p><strong>適用對象：</strong> 國小</p>
+            </div>
+
+            <h3>針對性辭典</h3>
+
+            <div class="dictionary-card">
+                <h5>螢火蟲 彩圖中英對照成語辭典（精裝）</h5>
+                <p><strong>特點：</strong> 「多元學習，生動彩色插圖加深印象」。收錄常用成語，包含中英對照。</p>
+                <p><strong>適用對象：</strong> 國小、國中、高中、大學・社會人士</p>
+            </div>
+        </div>
+
+        <div id="conclusion" class="content-section">
+            <h2>結語與建議</h2>
+            
+            <p style="text-align: center; font-size: 1.4em; margin-bottom: 30px; color: #d32f2f;">
+                為孩子選擇一本好的國語辭典，如同為他們開啟一道通往知識的門
+            </p>
+
+            <div class="grade-card">
+                <h4>購買建議</h4>
+                <ul class="emoji-list">
+                    <li><strong>一本字典用六年？</strong> 不太可能。隨著年級增長，建議「依照孩子的學習程度、需求來調整」。</li>
+                    <li><strong>準備多本？</strong> 有些家長會準備2-4本辭典，分別放在學校、安親班和家裡。</li>
+                    <li><strong>實際體驗最重要：</strong> 建議家長帶孩子到書店「摸摸看看實際翻查」。</li>
+                    <li><strong>傳統出版社是指標：</strong> 「五南、三民、東方以及國語日報出版社都是在辭書編寫非常用心的傳統出版社」。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>🌟 讓識字學習之路充滿樂趣與效率 🌟</h3>
+            <p>透過這份詳盡的指南，期許家長能為孩子挑選到最合適的國語辭典</p>
+        </div>
+    </div>
+
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        function showSection(sectionId) {
+            // 隱藏所有section
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // 移除所有tab的active狀態
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 顯示選中的section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // 添加active狀態到對應的tab
+            event.target.classList.add('active');
+            
+            // 滾動到頂部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 滾動時顯示返回頂部按鈕
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.pageYOffset > 300) {
+                scrollTop.style.display = 'block';
+            } else {
+                scrollTop.style.display = 'none';
+            }
+        });
+
+        // 為emoji-list添加動畫效果
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.6s ease-in-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.emoji-list li, .dictionary-card, .grade-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
